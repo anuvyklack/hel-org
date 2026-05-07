@@ -5,7 +5,7 @@
 ;; Author: Yuriy Artemyev <anuvyklack@gmail.com>
 ;; Maintainer: Yuriy Artemyev <anuvyklack@gmail.com>
 ;; Version: 0.10.0
-;; Homepage: https://github.com/anuvyklack/hel
+;; Homepage: https://github.com/anuvyklack/hel-org
 ;; Package-Requires: ((emacs "29.1"))
 ;;
 ;; This file is not part of GNU Emacs.
@@ -44,8 +44,6 @@
   "C-S-j" 'org-shiftcontroldown
   "C-S-k" 'org-shiftcontrolup
   "C-S-l" 'org-shiftcontrolright
-
-  "C-c SPC" 'org-ctrl-c-ctrl-c
 
   "z u"   'hel-org-up-heading
   "g h"   'hel-org-first-non-blank
@@ -134,8 +132,7 @@
     "z x" 'org-edit-src-save
     "Z Z" 'org-edit-src-exit
     "Z Q" 'org-edit-src-abort
-    "C-c C-c" 'org-edit-src-exit
-    "C-c SPC" 'org-edit-src-exit))
+    "C-c C-c" 'org-edit-src-exit))
 
 (add-hook 'org-src-mode-hook 'hel--org-src-h)
 
