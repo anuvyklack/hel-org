@@ -13,7 +13,7 @@ The [[https://github.com/anuvyklack/hel][Hel]] extension that integrates it with
 ** Keybindings
 *** Navigation
 
-=h=, =j=, =k=, =l= keys with =M-=, =S-M-=, =C-S-= modifires are work as arrows with the same
+=h=, =j=, =k=, =l= keys with =M-=, =S-M-=, =C-S-= modifiers work as arrows with the same
 modifiers except for =J= and =K=, because =J= is occupied in Hel for ~hel-join-line~.
 
 - =g h= ::
@@ -41,7 +41,7 @@ The same as tree-sitter AST climbing commands but for Org-mode:
 
 Hel native commands become org-aware (=d=, =p=, =<=, =>=, ~=~, etc).
 
-Hel's select (=mi=, =ma=) and surround (=ms=, =md=, =mr=) operations are work with all Org
+Hel's select (=mi=, =ma=) and surround (=ms=, =md=, =mr=) operations work with all Org
 emphasis delimiters:
 
 | Char | Markup        |
@@ -53,7 +53,7 @@ emphasis delimiters:
 | ===    | =verbatim=      |
 | =~=    | ~code~          |
 
-When =hel-multiple-cursors-mode= is active the =org-hide-emphasis-markers= is
+When =hel-multiple-cursors-mode= is active, the =org-hide-emphasis-markers= is
 temporarily set to =nil= so fake cursors can see raw markup delimiters.
 
 *** Date picker (=org-read-date=)
@@ -67,8 +67,8 @@ temporarily set to =nil= so fake cursors can see raw markup delimiters.
 
 *** org-src (source block editing)
 
-Standart convention for source blocks, capture, table of formula editing temp
-buffers, taken from Evil (hence Vim):
+Standard conventions for source-block, capture, and table-formula editing
+buffers, borrowed from Evil, following Vim convention:
 
 - =Z Z= :: save and exit (Emacs native =C-c C-c=)
 - =Z Q= :: Abort, discard changes (Emacs native =C-c C-k=)
