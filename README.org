@@ -47,8 +47,8 @@ The same as tree-sitter AST navigation commands but for Org-mode:
 Standard convention borrowed from Evil (which follows Vim) in Org-mode
 source-block, capture, and table-formula editing buffers:
 
-- =Z Z= :: save and exit (Emacs native =C-c C-c=)
-- =Z Q= :: Abort, discard changes (Emacs native =C-c C-k=)
+| =Z Z= | save and exit (native =C-c C-c=)          |
+| =Z Q= | Abort, discard changes (native =C-c C-k=) |
 
 *** Org calendar
 
