@@ -109,21 +109,38 @@
     "C-k" 'hel-org-previous-element
     "C-l" 'hel-org-down-element))
 
-(let ((map org-read-date-minibuffer-local-map))
-  (org-defkey map (kbd "M-l") 'org-calendar-forward-day)
-  (org-defkey map (kbd "M-h") 'org-calendar-backward-day)
-  (org-defkey map (kbd "M-j") 'org-calendar-forward-week)
-  (org-defkey map (kbd "M-k") 'org-calendar-backward-week)
-  (org-defkey map (kbd "M-L") 'org-calendar-forward-month)
-  (org-defkey map (kbd "M-H") 'org-calendar-backward-month)
-  (org-defkey map (kbd "M-J") 'org-calendar-forward-year)
-  (org-defkey map (kbd "M-K") 'org-calendar-backward-year))
-
 (with-eval-after-load 'org-table
   (hel-keymap-set org-table-fedit-map :state 'normal
     "z x" 'org-table-fedit-finish
     "Z Z" 'org-table-fedit-finish
     "Z Q" 'org-table-fedit-abort))
+
+;;;; org-calendar
+
+(hel-keymap-set org-read-date-minibuffer-local-map
+  "C-l"   'org-calendar-forward-day
+  "C-h"   'org-calendar-backward-day
+  "C-j"   'org-calendar-forward-week
+  "C-k"   'org-calendar-backward-week
+  ;;
+  "M-l"   'org-calendar-forward-month
+  "M-h"   'org-calendar-backward-month
+  "M-j"   'org-calendar-forward-year
+  "M-k"   'org-calendar-backward-year
+  ;;
+  "C-S-l" 'org-calendar-forward-month
+  "C-S-h" 'org-calendar-backward-month
+  "C-S-j" 'org-calendar-forward-year
+  "C-S-k" 'org-calendar-backward-year)
+
+(hel-keymap-set org-read-date-minibuffer-local-map :state '(normal insert)
+  "C-d"   'org-calendar-scroll-month-left
+  "C-u"   'org-calendar-scroll-month-right
+  "C-f"   'org-calendar-scroll-three-months-left
+  "C-b"   'org-calendar-scroll-three-months-right)
+
+(hel-keymap-set org-read-date-minibuffer-local-map :state 'normal
+  "." 'org-calendar-goto-today)
 
 ;;;; org-src
 
