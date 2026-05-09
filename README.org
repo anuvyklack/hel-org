@@ -1,6 +1,6 @@
 * hel-org
 
-The [[https://github.com/anuvyklack/hel][Hel]] extension that integrates it with [[https://orgmode.org/][Org-mode]].
+A [[https://github.com/anuvyklack/hel][Hel]] extension for [[https://orgmode.org/][Org-mode]].
 
 ** Install
 
@@ -10,11 +10,20 @@ The [[https://github.com/anuvyklack/hel][Hel]] extension that integrates it with
   :after org)
 #+end_src
 
-** Keybindings
-*** Navigation
+** Integration with Org-mode
 
-=h=, =j=, =k=, =l= keys with =M-=, =S-M-=, =C-S-= modifiers work as arrows with the same
-modifiers except for =J= and =K=, because =J= is occupied in Hel for ~hel-join-line~.
+- Hel native commands are org-aware (=d=, =p=, =<=, =>=, ~=~, etc).
+
+- Hel's select (=mi=, =ma=) and surround (=ms=, =md=, =mr=) commands work with all
+  Org emphasis markers (=*=, =/=, =_=, =+=, ~=~, ~=~).
+
+- When ~hel-multiple-cursors-mode~ is active, ~org-hide-emphasis-markers~ is
+  temporarily set to =nil= so fake cursors can see raw markup delimiters.
+
+** Keybindings
+
+- =M-=​, =S-M-=​, =C-S-= + =h=, =j=, =k=, =l= keys work as arrows with the same modifiers
+  except for =J= and =K=, because =J= is occupied by ~hel-join-line~ in Hel.
 
 - =g h= ::
   First non-blank. In headlines jumps to text start (after stars and =TODO=
@@ -24,51 +33,29 @@ modifiers except for =J= and =K=, because =J= is occupied in Hel for ~hel-join-l
 - =[ RET= / =] RET= ::
   Insert heading, list item, or table row *above* / *below* current one.
 
-- =[ s= / =] s= or =[ .= / =] .= :: Jump to *previous* / *next* sentence.
+*** Structural editing
 
-*** Org AST navigation
+The same as tree-sitter AST navigation commands but for Org-mode:
 
-The same as tree-sitter AST climbing commands but for Org-mode:
+| Key                    | Description                          |
+|------------------------+--------------------------------------|
+| =C-h= / =C-l= or =M-o= / =M-i= | Select *eclosing* / *nested* AST node.   |
+| =C-j= / =C-k= or =M-n= / =M-p= | Select the *next* / *previous* AST node. |
 
-| Key        | Description                                     |
-|------------+-------------------------------------------------|
-| =C-h= or =M-o= | Expand region to the nearest enclosing element. |
-| =C-l= or =M-i= | Contract region to its first child element.     |
-| =C-j= or =M-n= | Move region to the next sibling element.        |
-| =C-k= or =M-p= | Move region to the previous sibling element.    |
+*** ~org-edit-special~
 
-*** Hel native commands
-
-Hel native commands become org-aware (=d=, =p=, =<=, =>=, ~=~, etc).
-
-Hel's select (=mi=, =ma=) and surround (=ms=, =md=, =mr=) operations work with all Org
-emphasis delimiters:
-
-| Char | Markup        |
-|------+---------------|
-| =*=    | *bold*          |
-| =/=    | /italic/        |
-| =_=    | _underline_     |
-| =+=    | +strikethrough+ |
-| ===    | =verbatim=      |
-| =~=    | ~code~          |
-
-When =hel-multiple-cursors-mode= is active, the =org-hide-emphasis-markers= is
-temporarily set to =nil= so fake cursors can see raw markup delimiters.
-
-*** Date picker (=org-read-date=)
-
-| Key       | Action |
-|-----------+--------|
-| =M-h= / =M-l= | day    |
-| =M-j= / =M-k= | week   |
-| =M-H= / =M-L= | month  |
-| =M-J= / =M-K= | year   |
-
-*** org-src (source block editing)
-
-Standard conventions for source-block, capture, and table-formula editing
-buffers, borrowed from Evil, following Vim convention:
+Standard convention borrowed from Evil (which follows Vim) in Org-mode
+source-block, capture, and table-formula editing buffers:
 
 - =Z Z= :: save and exit (Emacs native =C-c C-c=)
 - =Z Q= :: Abort, discard changes (Emacs native =C-c C-k=)
+
+*** Org calendar
+
+| Key                     | Description                      |
+|-------------------------+----------------------------------|
+| =C-= + =h=, =j=, =k=, =l=         | move over days and weeks         |
+| =M-= or =C-S-= + =h=, =j=, =k=, =l= | move over months and years       |
+| =C-d= / =C-u=               | scroll calendar for one month    |
+| =C-f= / =C-b=               | scroll calendar for three months |
+
