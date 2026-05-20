@@ -256,7 +256,7 @@ cursors in the buffer."
   "Move up in the outline hierarchy to the parent heading."
   :multiple-cursors nil
   (interactive)
-  (hel-delete-all-fake-cursors)
+  (hel-disable-multiple-cursors-mode)
   (deactivate-mark)
   (hel-push-point)
   (if (org-at-heading-p)
